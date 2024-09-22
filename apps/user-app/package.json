@@ -9,15 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.113.0",
+    "@react-three/fiber": "^8.17.7",
     "@repo/db": "*",
     "@repo/ui": "*",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.5.6",
     "next": "14.2.6",
     "next-auth": "^4.24.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "tailwind-merge": "^2.5.2",
+    "three": "^0.168.0",
+    "three-globe": "^2.31.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

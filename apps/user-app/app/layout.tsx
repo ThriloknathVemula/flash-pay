@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "PayTM",
+  title: "FlashPay",
   description: "A minimalist clone of PayTM application",
 };
 
