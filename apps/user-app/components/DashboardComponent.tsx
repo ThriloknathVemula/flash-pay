@@ -60,11 +60,11 @@ export const DashboardComponent = () => {
   };
 
   return (
-    <div className='grid grid-cols-1 mt-20 md:mt-1 md:grid-cols-2 flex flex-col justify-center items-center md:flex md:justify-between md:items-center md:mx-20'>
+    <div className='grid grid-cols-1 mt-20 md:mt-1 md:grid-cols-2 flex flex-col justify-center items-center md:flex md:flex-row md:justify-between md:items-center md:mx-20'>
         <div>
             <h1 className='text-sky-700 text-5xl font-bold'>Your money is where you are</h1>
         </div>
-        <div className='w-[50vw] h-[60vh]'>
+        <div className='invisible md:visible w-[50vw] h-[60vh]'>
             <World globeConfig={globeConfig} data={globeData} />
         </div>
     </div>
