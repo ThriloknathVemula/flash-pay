@@ -13,5 +13,5 @@ export default function Dashboard(){
     // if(session.status==="authenticated"){
     //     return <div>Dashboard</div>
     // }
-    return <div className="bg-[#F5F7F8]"><DashboardComponent/></div>  
+    return <div className="bg-[#F5F7F8] h-full w-screen"><DashboardComponent/></div>  
 }

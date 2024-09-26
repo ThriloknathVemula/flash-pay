@@ -1,11 +1,10 @@
-import { platform } from "os";
 import { ChangeEvent } from "react";
 
 interface inputBarProps{
-    type:string,
+    type?:string,
     label:string,
     name:string,
-    value:string,
+    value:string | number,
     onChangeFunc:(e: ChangeEvent<HTMLInputElement>) => void,
     placeholder:string
 }
