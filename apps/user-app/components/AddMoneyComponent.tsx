@@ -3,15 +3,18 @@ import { ChangeEvent } from "react";
 
 interface addMoneyProps {
     onChangeFunc:(e: ChangeEvent<HTMLInputElement>) => void,
-    amount: number
+    amount: number | string
 }
 
 export const AddMoneyComponent = (props:addMoneyProps) =>{
     const {onChangeFunc,amount }=  props;
     return <div className="flex flex-col gap-2">
-        <InputBar label="Amount" type="text" name="amount" value={amount} placeholder="Enter the amount" onChangeFunc={onChangeFunc}/>
+        <div className="flex flex-col">
+            <label className="font-semibold">Amount</label>
+            <input className="outline-none border-solid border-2 rounded-md p-1" name="amount" onChange={onChangeFunc} placeholder="Enter the amount"/>
+        </div>
         <p className="font-semibold">Select your Bank Account</p>
-        <select className="outline-none">
+        <select className="outline-none cursor-pointer">
             <option>ICICI Bank</option>
             <option>HDFC Bank</option>
             <option>State Bank of India</option>
