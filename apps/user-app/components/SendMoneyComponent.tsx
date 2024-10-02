@@ -1,24 +1,20 @@
-import { InputBar } from "@repo/ui/inputbar"
-import { ChangeEvent } from "react";
-import { toast } from "react-toastify";
+import { ChangeEvent, MouseEvent } from "react";
+
 
 interface sendMoneyProps{
     onChangeFunc:(e: ChangeEvent<HTMLInputElement>) => void,
     onChangeNumber:(e: ChangeEvent<HTMLInputElement>) => void,
     amount:number | string,
-    number:number | string
+    number:number | string,
+    onSendMoney:(e:React.MouseEvent<HTMLButtonElement>)=>void
 }
 
 
 export const SendMoneyComponent = (props:sendMoneyProps) =>{
-    const {onChangeFunc,amount,onChangeNumber,number} = props;
+    const {onChangeFunc,amount,onChangeNumber,number,onSendMoney} = props;
 
-    const onClickSendMoney = ()=>{
-        console.log(amount);
-        console.log(number);
-        if(isNaN(amount) || isNaN(number)){
-            toast.error('Invalid inputs')
-        }
+    const onClickSendMoney = (e:MouseEvent<HTMLButtonElement>)=>{
+        onSendMoney(e);
     }
 
     return <div className="flex flex-col gap-2">
