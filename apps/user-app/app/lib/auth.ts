@@ -30,7 +30,8 @@ export const authOptions = {
                                     email:credentials.email,
                                     password:hashedPassword,
                                     number:credentials.number,
-                                    username:credentials.username
+                                    username:credentials.username,
+                                    registered_at:new Date()
                                 }
                             });
 

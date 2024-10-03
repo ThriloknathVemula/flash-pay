@@ -19,4 +19,5 @@ model User {
   username String 
   password String
   number String? @unique
+  registered_at DateTime
 }
