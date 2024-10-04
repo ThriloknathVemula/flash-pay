@@ -1,15 +1,12 @@
-"use client"
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
-export default function Transaction(){
-    const router = useRouter();
-    const session = useSession();
-    if(!session.data?.user){
-        router.push('/api/auth/signin');
+export default async function Transaction(){
+    const session = await getServerSession();
+    if(!session?.user){
+        redirect('/signin')
     }
-    if(!session.data?.user){
+    if(!session?.user){
         return <div>Redirecting...</div>
     }
     return <div>Transaction page</div>
