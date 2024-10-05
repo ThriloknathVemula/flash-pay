@@ -2,11 +2,23 @@
 CREATE TYPE "OnRampStatus" AS ENUM ('Success', 'Failure', 'Processing');
 
 -- CreateTable
+CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "number" TEXT NOT NULL,
+    "registered_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Balance" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
-    "balance" INTEGER NOT NULL,
-    "locked_amount" INTEGER NOT NULL,
+    "balance" INTEGER NOT NULL DEFAULT 20000,
+    "locked_amount" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Balance_pkey" PRIMARY KEY ("id")
 );
@@ -24,6 +36,12 @@ CREATE TABLE "OnRampTransactions" (
 
     CONSTRAINT "OnRampTransactions_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_number_key" ON "User"("number");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Balance_userId_key" ON "Balance"("userId");

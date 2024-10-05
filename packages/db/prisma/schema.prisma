@@ -18,33 +18,34 @@ model User {
   email String @unique
   username String 
   password String
-  number String? @unique
+  number String @unique @db.VarChar(10)
   registered_at DateTime
   balance Balance?
-  transactions OnRampTransactions[]
+  transactions Transactions[]
 }
 
 model Balance{
   id Int @id @default(autoincrement())
   userId Int @unique
-  balance Int @default(200)
+  balance Int @default(20000)
   locked_amount Int @default(0)
   user User @relation(fields: [userId],references: [id])
 }
 
-model OnRampTransactions{
+model Transactions{
   id Int @id @default(autoincrement())
-  userId Int @unique
+  userId Int
+  toUserId Int  
   amount Int 
   token String @unique
   startTime DateTime
   provider String
   receiver String
-  status OnRampStatus
+  status TransactionStatus
   user User @relation(fields: [userId],references: [id])
 }
 
-enum OnRampStatus{
+enum TransactionStatus{
   Success
   Failure
   Processing

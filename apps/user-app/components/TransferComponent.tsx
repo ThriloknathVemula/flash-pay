@@ -1,10 +1,10 @@
 "use client"
 
 import { ChangeEvent, MouseEvent, useState } from "react"
-import { AddMoneyComponent } from "./AddMoneyComponent";
-import { Bounce, toast, ToastContainer } from "react-toastify";
-import { BalanceCard } from "./BalanceCard";
+import { AddMoneyComponent, bankOptions } from "./AddMoneyComponent";
+import { Bounce, toast } from "react-toastify";
 import { SendMoneyComponent } from "./SendMoneyComponent";
+import sendMoney from "../app/lib/actions/sendMoney";
 
 const activeBtnStates = {
     addMoney:'addMoney',
@@ -28,8 +28,8 @@ export const TransferComponent = ()=>{
         setNumber(e.target.value);
     }
 
-    const onSendMoney = (e:MouseEvent<HTMLButtonElement>) =>{
-        e.preventDefault;
+    const onSendMoney = async(e:MouseEvent<HTMLButtonElement>,bank:string) =>{
+        e.preventDefault();
         const amountNum = Number(amount);
         const numberNum = Number(number);
         if(Number.isNaN(amountNum) || Number.isNaN(numberNum)){
@@ -45,7 +45,8 @@ export const TransferComponent = ()=>{
                 transition: Bounce,
                 });
         }else{
-            console.log(amountNum, numberNum);
+            const message = await sendMoney({to:numberNum,amount:amountNum*100,provider:bank});
+            console.log(message);
         }
         setAmount("");
         setNumber("");  

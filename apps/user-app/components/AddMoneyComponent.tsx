@@ -7,7 +7,7 @@ interface addMoneyProps {
     amount: number | string
 }
 
-const bankOptions = [{
+export const bankOptions = [{
     name:"ICICI Bank",
     redirectUrl:"https://www.icicibank.com/personal-banking/insta-banking/internet-banking"
 },{
@@ -24,7 +24,18 @@ const bankOptions = [{
 
 export const AddMoneyComponent = (props:addMoneyProps) =>{
     const [redirectUrl,setRedirectUrl] = useState(bankOptions[0]?.redirectUrl);
+    const [bank,setBank] = useState(bankOptions[0]?.name);
     const {onChangeFunc,amount }=  props;
+
+    const handleSelectChange = (e:ChangeEvent<HTMLSelectElement>)=>{
+        const selectedUrl = e.target.value;
+        const selectedBank = bankOptions.find(eachBank => eachBank.redirectUrl === selectedUrl);
+        
+        if(selectedBank){
+            setBank(selectedBank.name);
+            setRedirectUrl(selectedUrl);
+        }
+    }
 
     return <div className="flex flex-col gap-2">
         <div className="flex flex-col">
@@ -32,9 +43,9 @@ export const AddMoneyComponent = (props:addMoneyProps) =>{
             <input className="outline-none border-solid border-2 rounded-md p-1" value={amount} name="amount" onChange={onChangeFunc} placeholder="Enter the amount"/>
         </div>
         <p className="font-semibold">Select your Bank Account</p>
-        <select onChange={(e)=>setRedirectUrl(e.target.value)} className="outline-none cursor-pointer">
+        <select onChange={handleSelectChange} className="outline-none cursor-pointer">
             {bankOptions.map((eachBank => (
-                <option value={eachBank.redirectUrl}>{eachBank.name}</option>
+                <option key={eachBank.name} value={eachBank.redirectUrl}>{eachBank.name}</option>
             )))}
         </select>
         <button onClick={()=> window.location.href = redirectUrl || ""} className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
