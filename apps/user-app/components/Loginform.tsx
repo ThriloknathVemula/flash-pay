@@ -1,12 +1,11 @@
 "use client"
 
 import { InputBar } from "@repo/ui/inputbar";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { LoginBtn } from "./LoginBtn";
-import { Button } from "@repo/ui/button";
 import { signIn } from "next-auth/react";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
-import { Bounce, Slide, toast, ToastContainer } from "react-toastify";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; 
 
 interface loginFormProps {

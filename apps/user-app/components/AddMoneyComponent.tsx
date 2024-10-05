@@ -1,24 +1,42 @@
-import { InputBar } from "@repo/ui/inputbar"
-import { ChangeEvent } from "react";
+"use client"
+
+import { ChangeEvent, useState } from "react";
 
 interface addMoneyProps {
     onChangeFunc:(e: ChangeEvent<HTMLInputElement>) => void,
     amount: number | string
 }
 
+const bankOptions = [{
+    name:"ICICI Bank",
+    redirectUrl:"https://www.icicibank.com/personal-banking/insta-banking/internet-banking"
+},{
+    name:"HDFC Bank",
+    redirectUrl:"https://netbanking.hdfcbank.com/"
+},{
+    name:"SBI Bank",
+    redirectUrl:"https://www.onlinesbi.sbi/"
+},{
+    name:"Axis Bank",
+    redirectUrl:"https://omni.axisbank.co.in/axisretailbanking/"
+}
+]
+
 export const AddMoneyComponent = (props:addMoneyProps) =>{
+    const [redirectUrl,setRedirectUrl] = useState(bankOptions[0]?.redirectUrl);
     const {onChangeFunc,amount }=  props;
+
     return <div className="flex flex-col gap-2">
         <div className="flex flex-col">
             <label className="font-semibold">Amount</label>
-            <input className="outline-none border-solid border-2 rounded-md p-1" name="amount" onChange={onChangeFunc} placeholder="Enter the amount"/>
+            <input className="outline-none border-solid border-2 rounded-md p-1" value={amount} name="amount" onChange={onChangeFunc} placeholder="Enter the amount"/>
         </div>
         <p className="font-semibold">Select your Bank Account</p>
-        <select className="outline-none cursor-pointer">
-            <option>ICICI Bank</option>
-            <option>HDFC Bank</option>
-            <option>State Bank of India</option>
+        <select onChange={(e)=>setRedirectUrl(e.target.value)} className="outline-none cursor-pointer">
+            {bankOptions.map((eachBank => (
+                <option value={eachBank.redirectUrl}>{eachBank.name}</option>
+            )))}
         </select>
-        <button className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
+        <button onClick={()=> window.location.href = redirectUrl || ""} className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
     </div>
 }
