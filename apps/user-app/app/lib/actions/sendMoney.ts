@@ -10,7 +10,7 @@ export default async function sendMoney (props:{to:number,amount:number,provider
     if(!session?.user?.id){
         return {message:"Error while sending"}
     }
-    const from = session.user.id;
+    const from = Number(session.user.id);
     
     const receiver = await prisma.user.findFirst({
         where:{
@@ -31,7 +31,7 @@ export default async function sendMoney (props:{to:number,amount:number,provider
 
     await prisma.transactions.create({
         data:{
-            userId: Number(from),
+            userId: from,
             toUserId: Number(receiver.id),
             amount: amount,
             token:token,
@@ -46,7 +46,7 @@ export default async function sendMoney (props:{to:number,amount:number,provider
         await prisma.$transaction(async(tx)=>{
             const sender = await prisma.balance.findFirst({
                 where:{
-                    userId:Number(from)
+                    userId:from
                 },
                 select:{
                     balance:true,
@@ -63,7 +63,7 @@ export default async function sendMoney (props:{to:number,amount:number,provider
                     balance:{decrement:amount}
                 },
                 where:{
-                    userId:Number(from)
+                    userId:from
                 }
             })
     

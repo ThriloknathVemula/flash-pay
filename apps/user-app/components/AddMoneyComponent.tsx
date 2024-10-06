@@ -4,7 +4,8 @@ import { ChangeEvent, useState } from "react";
 
 interface addMoneyProps {
     onChangeFunc:(e: ChangeEvent<HTMLInputElement>) => void,
-    amount: number | string
+    amount: number | string,
+    onAddMoney: (bank:string)=>void
 }
 
 export const bankOptions = [{
@@ -24,8 +25,8 @@ export const bankOptions = [{
 
 export const AddMoneyComponent = (props:addMoneyProps) =>{
     const [redirectUrl,setRedirectUrl] = useState(bankOptions[0]?.redirectUrl);
-    const [bank,setBank] = useState(bankOptions[0]?.name);
-    const {onChangeFunc,amount }=  props;
+    const [bank,setBank] = useState(bankOptions[0]?.name || "");
+    const {onChangeFunc,amount,onAddMoney}=  props;
 
     const handleSelectChange = (e:ChangeEvent<HTMLSelectElement>)=>{
         const selectedUrl = e.target.value;
@@ -35,6 +36,12 @@ export const AddMoneyComponent = (props:addMoneyProps) =>{
             setBank(selectedBank.name);
             setRedirectUrl(selectedUrl);
         }
+    }
+
+    const onClickAddMoney = (e:React.MouseEvent<HTMLButtonElement>)=>{
+        e.preventDefault();
+        window.open(redirectUrl,"_blank")
+        onAddMoney(bank);
     }
 
     return <div className="flex flex-col gap-2">
@@ -48,6 +55,6 @@ export const AddMoneyComponent = (props:addMoneyProps) =>{
                 <option key={eachBank.name} value={eachBank.redirectUrl}>{eachBank.name}</option>
             )))}
         </select>
-        <button onClick={()=> window.open(redirectUrl,"_blank")} className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
+        <button onClick={onClickAddMoney} className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
     </div>
 }

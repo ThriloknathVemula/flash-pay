@@ -9,7 +9,7 @@ interface sendMoneyProps{
     onChangeNumber:(e: ChangeEvent<HTMLInputElement>) => void,
     amount:number | string,
     number:number | string,
-    onSendMoney:(e:React.MouseEvent<HTMLButtonElement>,bank:string)=>void
+    onSendMoney:(bank:string)=>void
 }
 
 
@@ -29,7 +29,8 @@ export const SendMoneyComponent = (props:sendMoneyProps) =>{
     }
 
     const onClickSendMoney = (e:MouseEvent<HTMLButtonElement>)=>{
-        onSendMoney(e,bank);
+        e.preventDefault();
+        onSendMoney(bank);
     }
 
     return <div className="flex flex-col gap-2">

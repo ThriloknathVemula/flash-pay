@@ -1,11 +1,12 @@
 "use client"
 
-import { ChangeEvent, MouseEvent, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { AddMoneyComponent} from "./AddMoneyComponent";
 import { Bounce, toast } from "react-toastify";
 import { SendMoneyComponent } from "./SendMoneyComponent";
 import sendMoney from "../app/lib/actions/sendMoney";
 import { useRouter } from "next/navigation";
+import addMoney from "../app/lib/actions/addMoney";
 
 const activeBtnStates = {
     addMoney:'addMoney',
@@ -31,8 +32,7 @@ export const TransferComponent = ()=>{
         setNumber(e.target.value);
     }
 
-    const onSendMoney = async(e:MouseEvent<HTMLButtonElement>,bank:string) =>{
-        e.preventDefault();
+    const onSendMoney = async(bank:string) =>{
         const amountNum = Number(amount);
         const numberNum = Number(number);
         if(Number.isNaN(amountNum) || Number.isNaN(numberNum)){
@@ -50,7 +50,7 @@ export const TransferComponent = ()=>{
         }else{
             const {message} = await sendMoney({to:numberNum,amount:amountNum*100,provider:bank});
             if(message === "Insufficient funds"){
-                toast.error("Tnsufficient funds",{
+                toast.error("Insufficient funds",{
                     position: "bottom-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -71,6 +71,16 @@ export const TransferComponent = ()=>{
         setNumber("");  
     }
 
+    const onAddMoney = async(bank:string)=>{
+        const amountNum = Number(amount);
+        const {message} = await addMoney({amount:amountNum*100,provider:bank});
+        if(message === "Success"){
+            router.push('/paymentSuccess');
+        }else{
+            router.push('/paymentFailure')
+        }
+    }
+
     return( 
     <>
         <div className="w-[30vw]">
@@ -81,7 +91,7 @@ export const TransferComponent = ()=>{
             <div className="bg-slate-50 rounded-lg p-10 py-5">
                 <h1 className="font-bold text-xl text-cyan-700 mb-2">{activeBtn==='addMoney'?'Add Money to your Account' : 'Send Money to Others'}</h1>
                 {activeBtn==="addMoney" ? 
-                <AddMoneyComponent onChangeFunc = {handleAmountChange} amount={amount}/> : 
+                <AddMoneyComponent onChangeFunc = {handleAmountChange} amount={amount} onAddMoney={onAddMoney}/> : 
                 <SendMoneyComponent onChangeFunc={handleAmountChange} number={number} amount={amount} onChangeNumber={handleNumberChange} onSendMoney={onSendMoney}/>}
             </div>
         </div>
