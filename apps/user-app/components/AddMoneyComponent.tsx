@@ -48,6 +48,6 @@ export const AddMoneyComponent = (props:addMoneyProps) =>{
                 <option key={eachBank.name} value={eachBank.redirectUrl}>{eachBank.name}</option>
             )))}
         </select>
-        <button onClick={()=> window.location.href = redirectUrl || ""} className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
+        <button onClick={()=> window.open(redirectUrl,"_blank")} className="cursor-pointer rounded-md mt-2 p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100">Add Money</button>
     </div>
 }

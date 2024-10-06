@@ -1,10 +1,11 @@
 "use client"
 
 import { ChangeEvent, MouseEvent, useState } from "react"
-import { AddMoneyComponent, bankOptions } from "./AddMoneyComponent";
+import { AddMoneyComponent} from "./AddMoneyComponent";
 import { Bounce, toast } from "react-toastify";
 import { SendMoneyComponent } from "./SendMoneyComponent";
 import sendMoney from "../app/lib/actions/sendMoney";
+import { useRouter } from "next/navigation";
 
 const activeBtnStates = {
     addMoney:'addMoney',
@@ -17,6 +18,8 @@ export const TransferComponent = ()=>{
     const [activeBtn,setActiveBtn] = useState(activeBtnStates.addMoney);
     const [amount,setAmount] = useState("");
     const [number,setNumber] = useState("");
+
+    const router = useRouter();
 
     const handleAmountChange = (e:ChangeEvent<HTMLInputElement>)=>{
         e.preventDefault();
@@ -45,8 +48,24 @@ export const TransferComponent = ()=>{
                 transition: Bounce,
                 });
         }else{
-            const message = await sendMoney({to:numberNum,amount:amountNum*100,provider:bank});
-            console.log(message);
+            const {message} = await sendMoney({to:numberNum,amount:amountNum*100,provider:bank});
+            if(message === "Insufficient funds"){
+                toast.error("Tnsufficient funds",{
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+            }else if(message === "Success"){
+                router.push('/paymentSuccess');
+            }else{
+                router.push('/paymentFailure');
+            }
         }
         setAmount("");
         setNumber("");  

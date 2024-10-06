@@ -29,13 +29,11 @@ export const LoginForm = (props:loginFormProps)=>{
     const handleChange = (event:ChangeEvent<HTMLInputElement>)=>{
         event.preventDefault();
         const {name, value} = event.target;
-        //console.log({[name]:value});
         setCredentials({...credentials,[name]:value});
     }
 
     const onClickSubmit = async(event:React.SyntheticEvent)=>{
         event.preventDefault()
-        console.log('submit func');
         const res = await signIn('credentials',{
             email:credentials.email,
             password:credentials.password,

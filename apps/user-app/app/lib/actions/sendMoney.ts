@@ -86,10 +86,9 @@ export default async function sendMoney (props:{to:number,amount:number,provider
                     token:token
                 }
             })
-
-            return {message:"Success"}
         })
-    }catch(err){
+        return {message:"Success"}
+    }catch(err:any){
         await prisma.transactions.update({
             data:{
                 status:"Failure"
@@ -98,7 +97,7 @@ export default async function sendMoney (props:{to:number,amount:number,provider
                 token:token
             }
         })
-        console.log(err)
-        return {message:"Failed"}
+        const message = err.message || "Failed";
+        return {message:message}
     }
 }
