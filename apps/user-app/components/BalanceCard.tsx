@@ -1,4 +1,16 @@
+"use client"
+
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+
+
+
 export const BalanceCard = ({balance,locked,totalBalance}:{balance:Number,locked:Number,totalBalance:Number})=>{
+    const router = useRouter();
+    useEffect(()=>{
+        router.refresh()
+    },[balance])
+    
     return <div className="bg-slate-50 p-7 rounded-lg">
         <h1 className="font-bold text-xl text-cyan-700 mb-2">Wallet Balance</h1>
         <div className="flex justify-between items-center gap-10 border-b-2 border-dashed text-lg">

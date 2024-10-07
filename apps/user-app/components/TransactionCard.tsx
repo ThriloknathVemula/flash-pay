@@ -1,9 +1,10 @@
-interface transactionProps {
+export interface transactionProps {
     amount: number,
     time: Date,
     bankName: string,
     receiver: string,
     status: string,
+    uniqueId: number
 }
 
 export const TransactionCard = ({transactionDetails}: {transactionDetails:transactionProps})=>{
