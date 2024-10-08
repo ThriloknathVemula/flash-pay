@@ -71,7 +71,7 @@ export const LoginForm = (props:loginFormProps)=>{
           if(redirect){
             router.push(redirect)
           }else{
-            setTimeout(()=>{router.push('/home')},2000)
+            router.push('/home');
           }
     }
 

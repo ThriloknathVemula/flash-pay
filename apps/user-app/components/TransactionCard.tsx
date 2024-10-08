@@ -11,15 +11,16 @@ export const TransactionCard = ({transactionDetails}: {transactionDetails:transa
     const {amount,time,bankName,receiver,status} = transactionDetails;
 
     const receiverName = receiver.charAt(0).toUpperCase() + receiver.slice(1);
-
+    const styling = status==="Success" ? "border-green-500" : "border-red-400"
     return (
-        <div className="rounded-lg bg-slate-100 mt-2 p-5 flex justify-between items-center">
+        <div className={`rounded-lg bg-slate-100 border-solid border-2 ${styling} mt-2 p-5 flex justify-between items-center`}>
             <div className="font-bold">
                 Paid to: {receiverName}
                 <p className="font-semibold">From {bankName}</p>
             </div>
-            <div>{time.toLocaleDateString()} {time.toLocaleTimeString()}
+            <div>
                 <p className="font-bold">{amount/100} INR</p>
+                {time.toLocaleDateString()} {time.toLocaleTimeString()}
             </div>
         </div>
     )
