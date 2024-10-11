@@ -7,5 +7,11 @@ export default async function UserCard(props:{id:String}){
         }
     })
 
-    return <div>{userDetails?.email}</div>
+    return (
+    <div className="flex justify-center items-center">
+        <div className="shadow-slate-700 p-5">
+            
+        </div>
+    </div>
+    )
 }
