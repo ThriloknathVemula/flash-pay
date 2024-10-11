@@ -10,14 +10,12 @@ export default async function Transaction(){
         redirect('/signin')
     }
 
-    const userid = Number(session.user.id)
-    const ordering = 'desc';
-
-    //const transactions = await prisma.$queryRaw`SELECT * FROM Transactions WHERE userId = ${userid} ORDER BY ${ordering}`
-
     const transactions = await prisma.transactions.findMany({
         where:{
             userId: Number(session.user.id)
+        },
+        orderBy:{
+            startTime:"desc"
         }
     })
 
