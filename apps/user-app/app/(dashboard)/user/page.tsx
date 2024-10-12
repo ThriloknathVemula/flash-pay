@@ -11,8 +11,8 @@ export default async function User(){
 
 
     if(session.user){
-        return <div>
-        <UserCard id={session.user.id}/>
-    </div>
+        return <div className="w-full">
+            <UserCard id={session.user.id}/>
+        </div>
     }
 }
