@@ -1,12 +1,38 @@
-"use client"
+import prisma from "@repo/db/client";
+import TransactionDetailsCard from "../../../../components/TransactionDetailsCard";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-import { useParams } from "next/navigation";
+interface TransactionPageProps {
+    params: {
+      id: string;
+    };
+  }
 
-export default function TransactionDetailsPage(){
-    const params = useParams()
+export default async function TransactionDetailsPage({params}:TransactionPageProps){
+    const session = await getServerSession();
+    if(!session?.user){
+        redirect('/signin')
+    }
+
     const {id} = params;
-    console.log(params)
     
-
-    return <div>Transaction id: {id}</div>
+    
+    const details = await prisma.transactions.findFirst({
+        where:{
+            id: Number(id)
+        },
+        select:{
+            status:true,
+            receiver:true,
+            amount:true,
+            startTime:true
+        }
+    })
+    
+    if(details){
+        return <div className="w-full">
+            <TransactionDetailsCard details = {details}/>
+        </div>
+    }
 }

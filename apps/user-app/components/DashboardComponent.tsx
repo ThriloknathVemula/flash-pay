@@ -75,7 +75,7 @@ export const DashboardComponent = () => {
       <div className='bg-cyan-200 w-[50vw] max-h-[50vh] rounded-lg ml-2 p-5 py-20 flex flex-col items-center gap-2'>
           <p className='text-3xl text-slate-950 font-semibold font-mono'>Fast, Safe and Social Payments</p>
           <p className='text-gray-500'>Pay, get paid, grow a business, and more. Join the tens of millions of people on FlashPay.</p>
-          <FlashPayBtn/>
+          <FlashPayBtn text={"FlashPay"} routePage='transfer'/>
           <Image src={picnicImg} alt="picnic-img" className='invisible lg:visible h-[25rem] w-96 rounded-md relative left-[520px] bottom-[160px]'/>
       </div>
     </div>

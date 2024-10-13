@@ -8,7 +8,7 @@ import NoTransactions from "../../../components/NoTransactions";
 export default async function Transaction(){
     const session = await getServerSession(authOptions);
     if(!session?.user){
-        redirect('/signin')
+        return redirect('/signin')
     }
 
     const transactions = await prisma.transactions.findMany({
