@@ -63,20 +63,20 @@ export const DashboardComponent = () => {
   };
 
   return (
-    <div className='bg-[#F5F7F8]'>
-      <div className='grid grid-cols-1 mt-20 md:mt-1 md:grid-cols-2 flex flex-col justify-center items-center md:flex md:flex-row md:justify-between md:items-center md:mx-20'>
+    <div className='bg-[#F5F7F8] flex flex-col items-center lg:items-start mb-5'>
+      <div className='grid grid-cols-1 mt-20 lg:mt-1 lg:grid-cols-2 flex flex-col justify-center items-center md:flex md:flex-row md:justify-between md:items-center md:mx-20'>
         <div className='text-center'>
             <h1 className='text-sky-700 text-5xl font-bold font-sans'>Your money is where you are</h1>
         </div>
-        <div className='invisible md:visible w-[50vw] h-[60vh]'>
+        <div className='hidden lg:block w-[50vw] h-[60vh]'>
             <World globeConfig={globeConfig} data={globeData} />
         </div>
       </div>
-      <div className='bg-cyan-200 w-[50vw] max-h-[50vh] rounded-lg ml-2 p-5 py-20 flex flex-col items-center gap-2'>
+      <div className='bg-cyan-200 w-[50vw] max-h-[50vh] rounded-lg mt-10 ml-2 p-5 py-20 flex flex-col items-center gap-2'>
           <p className='text-3xl text-slate-950 font-semibold font-mono'>Fast, Safe and Social Payments</p>
           <p className='text-gray-500'>Pay, get paid, grow a business, and more. Join the tens of millions of people on FlashPay.</p>
           <FlashPayBtn text={"FlashPay"} routePage='transfer'/>
-          <Image src={picnicImg} alt="picnic-img" className='invisible lg:visible h-[25rem] w-96 rounded-md relative left-[520px] bottom-[160px]'/>
+          <Image src={picnicImg} alt="picnic-img" className='hidden xl:block h-[25rem] w-96 rounded-md xl:relative xl:left-[520px] xl:bottom-[160px]'/>
       </div>
     </div>
   );
