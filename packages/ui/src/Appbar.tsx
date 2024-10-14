@@ -3,6 +3,8 @@
 import {useRouter} from 'next/navigation'
 import { Button } from './button';
 import { FaRegUserCircle } from "react-icons/fa";
+import { IoMdLogIn } from "react-icons/io";
+import { GiHamburgerMenu } from "react-icons/gi";
 import LogoImg from './assets/transaction.png'
 import Image from 'next/image'
 
@@ -24,11 +26,14 @@ export const Appbar = (props:AppbarProps)=>{
                 <p className="md:text-3xl text-sky-700 p-2 rounded-sm font-mono font-bold md:font-extrabold text-xl" onClick={()=>{router.push('/home')}}>FlashPay</p>
             </div>
             <div className='flex items-center'>
-                {user && <div>
-                    <Button onClick={()=>router.push('/user')}><FaRegUserCircle/></Button>
+                {user && <div className='hidden md:block'>
+                    <Button onClick={()=>router.push('/user')}><FaRegUserCircle className='h-4 w-4'/></Button>
                 </div>}
-                <div>
+                <div className='hidden md:block'>
                     <Button onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
+                </div>
+                <div className='block md:hidden'>
+                    <Button onClick={user ? onSignout : onSignin}>{user ? <GiHamburgerMenu className='h-4 w-4'/> : <IoMdLogIn className='h-5 w-5'/>}</Button>
                 </div>
             </div>
         </div>

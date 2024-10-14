@@ -83,7 +83,7 @@ export const TransferComponent = ()=>{
 
     return( 
     <>
-        <div className="w-[30vw]">
+        <div className="md:w-[30vw] w-[60vw] mx-auto mb-5">
             <div className="flex justify-center items-center p-5 gap-2">
                 <button className="cursor-pointer rounded-md p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100" onClick={()=>setActiveBtn(activeBtnStates.addMoney)}>Add money to your account</button>
                 <button className="cursor-pointer rounded-md p-2 bg-cyan-500 hover:bg-cyan-600 text-slate-100" onClick={()=>setActiveBtn(activeBtnStates.sendMoney)}>Send money to others</button>

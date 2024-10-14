@@ -42,7 +42,7 @@ export const LoginForm = (props:loginFormProps)=>{
             redirect:false
         });
         if (!res || res.error) {
-            toast.error(`Login in failed: ${res?.error}` || "unknown error",{
+            toast.error(`Login failed: ${res?.error}` || "unknown error",{
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,

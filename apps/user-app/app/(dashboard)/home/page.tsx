@@ -6,7 +6,8 @@ import { authOptions } from "../../lib/auth";
 export default async function Dashboard(){
     const session = await getServerSession(authOptions);
     if(!session?.user){ 
-        redirect('/signin');
+        return redirect('/signin');
     }
+    
     return <div className="bg-[#F5F7F8] h-full w-screen"><DashboardComponent/></div>  
 }
