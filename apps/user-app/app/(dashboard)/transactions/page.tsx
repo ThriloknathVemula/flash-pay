@@ -29,7 +29,7 @@ export default async function Transaction(){
         uniqueId:eachTransaction.id
     }))
 
-    return <div className="bg-[#F5F7F8] w-[100vw] flex flex-col px-5 pr-10 pt-5 gap-1">
+    return <div className="bg-[#F5F7F8] w-[100vw] h-[100vh] flex flex-col px-5 pr-10 pt-5 gap-1">
         <h1 className="font-bold text-3xl text-cyan-800">Transactions</h1>
         {txns.length!==0 ? 
         txns.map(eachItem=>(

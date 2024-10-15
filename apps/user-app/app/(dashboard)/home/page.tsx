@@ -12,7 +12,7 @@ export default async function Dashboard(){
     
     return (
         <div className="flex flex-col h-full w-screen">
-            <div className="bg-[#F5F7F8]">
+            <div className="bg-[#F5F7F8] mb-3">
                 <DashboardComponent/>
             </div>
             <Footer/>
