@@ -6,7 +6,7 @@
       "dependsOn": ["^build","^db:generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "env":["NEXTAUTH_SECRET"]
+      "env":["NEXTAUTH_SECRET","DATABASE_URL"]
     },
     "db:generate":{
       "cache": false
