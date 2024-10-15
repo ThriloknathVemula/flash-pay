@@ -4,6 +4,7 @@ import { Appbar } from "@repo/ui/appbar";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import SidebarComponent from "../../components/SidebarComponent";
+import ToolBar from "../../components/ToolBar";
 
 export default function Layout({
     children,
@@ -19,7 +20,7 @@ export default function Layout({
           <SidebarComponent/>
           {children}
         </div>  
-        
+        <ToolBar/>
       </div>
     );
   }

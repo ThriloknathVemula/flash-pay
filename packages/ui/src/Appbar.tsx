@@ -3,8 +3,7 @@
 import {useRouter} from 'next/navigation'
 import { Button } from './button';
 import { FaRegUserCircle } from "react-icons/fa";
-import { IoMdLogIn } from "react-icons/io";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdLogIn, IoMdLogOut } from "react-icons/io";
 import LogoImg from './assets/transaction.png'
 import Image from 'next/image'
 
@@ -33,7 +32,7 @@ export const Appbar = (props:AppbarProps)=>{
                     <Button onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
                 </div>
                 <div className='block md:hidden'>
-                    <Button onClick={user ? onSignout : onSignin}>{user ? <GiHamburgerMenu className='h-4 w-4'/> : <IoMdLogIn className='h-5 w-5'/>}</Button>
+                    <Button onClick={user ? onSignout : onSignin}>{user ? <IoMdLogOut className='h-4 w-4'/> : <IoMdLogIn className='h-5 w-5'/>}</Button>
                 </div>
             </div>
         </div>

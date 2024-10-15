@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
-interface sidebarPropsType {
+export interface sidebarPropsType {
     href:string;
     title:string;
     icon:React.ReactNode
