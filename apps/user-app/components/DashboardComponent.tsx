@@ -2,8 +2,9 @@ import { World, GlobeConfig } from './ui/globe';
 import picnicImg from '../assets/picnic.jpg';
 import Image from 'next/image';
 import FlashPayBtn from './FlashPayBtn';
+import { format } from 'date-fns';
 
-export const DashboardComponent = () => {
+export const DashboardComponent = (props:{name:string}) => {
   const globeData = [
     {
       order: 1,
@@ -44,6 +45,18 @@ export const DashboardComponent = () => {
     // Add more arcs or points here
   ];
 
+  let duration;
+  const timeNow = parseInt(format(new Date(),"HH"));
+
+  if((timeNow >= 5 && timeNow < 12)){
+    duration = "Morning"
+  }else if((timeNow >= 12 && timeNow < 17)){
+    duration = "Afternoon"
+  }else {
+    duration = "Evening"
+  }
+
+
   const globeConfig: GlobeConfig = {
     globeColor: '#b7b7c7',
     showAtmosphere: true,
@@ -65,8 +78,9 @@ export const DashboardComponent = () => {
   return (
     <div className='bg-[#F5F7F8] mx-auto flex flex-col items-center xl:items-start mb-5'>
       <div className='grid grid-cols-1 mt-20 lg:mt-1 lg:grid-cols-2 flex flex-col justify-center items-center md:flex md:flex-row md:justify-between md:items-center md:mx-20'>
-        <div className='text-center px-3'>
-            <h1 className='text-sky-700 text-4xl md:text-5xl font-bold font-sans'>Your money is where you are</h1>
+        <div className='flex flex-col items-center text-center px-2'>
+            <h1 className='text-sky-700 text-3xl md:text-4xl font-bold font-sans mb-2'>Good {duration} {props.name}.</h1>
+            <h1 className='text-sky-700/75 text-3xl md:text-4xl font-bold font-sans'>Your money is where you are</h1>
         </div>
         <div className='hidden lg:block w-[50vw] h-[60vh]'>
             <World globeConfig={globeConfig} data={globeData} />

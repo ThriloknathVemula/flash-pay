@@ -18,7 +18,7 @@ export default function PaymentSuccess(){
     }
 
     return (
-        <div className="flex flex-col w-screen gap-1 p-24 items-center">
+        <div className="flex flex-col h-screen w-screen gap-1 pt-24 md:p-24 items-center">
             <div>
                 <FaExclamationCircle className="text-red-600 h-20 w-20"/>
             </div>

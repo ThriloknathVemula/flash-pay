@@ -31,7 +31,7 @@ export default async function TransactionDetailsPage({params}:TransactionPagePro
     })
     
     if(details){
-        return <div className="w-full">
+        return <div className="w-full h-screen">
             <TransactionDetailsCard details = {details}/>
         </div>
     }

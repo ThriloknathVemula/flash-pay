@@ -8,11 +8,11 @@ interface transactionDetailsProps{
 
 export default function TransactionDetailsCard(props:transactionDetailsProps){
     const {status,receiver,amount,startTime} = props.details;
-    const transactionTime = format(startTime,"dd/MM/yyyy HH:mm:ss");
+    const transactionTime = format(new Date(startTime),"dd/MM/yyyy HH:mm:ss");
     const receiverName = receiver.charAt(0).toUpperCase() + receiver.slice(1);
 
     return (
-    <div className="flex flex-col md:pt-32 pt-20 items-center h-full">
+    <div className="flex flex-col mx-2 md:pt-32 pt-20 items-center h-full">
         <div className="flex mb-2 flex-col items-center gap-1 bg-white shadow-lg border-2 border-gray-200 rounded-xl p-6">
             <div>
                 {status === "Failure" ? 
