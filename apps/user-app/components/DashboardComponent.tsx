@@ -2,7 +2,6 @@ import { World, GlobeConfig } from './ui/globe';
 import picnicImg from '../assets/picnic.jpg';
 import Image from 'next/image';
 import FlashPayBtn from './FlashPayBtn';
-import { format } from 'date-fns';
 
 export const DashboardComponent = (props:{name:string}) => {
   const globeData = [
@@ -46,7 +45,7 @@ export const DashboardComponent = (props:{name:string}) => {
   ];
 
   let duration;
-  const timeNow = parseInt(format(new Date(),"HH"));
+  const timeNow = new Date().getHours();
   const name = props.name.charAt(0).toUpperCase() + props.name.slice(1);
 
   if((timeNow >= 5 && timeNow < 12)){
