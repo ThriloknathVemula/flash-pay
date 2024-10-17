@@ -47,6 +47,7 @@ export const DashboardComponent = (props:{name:string}) => {
 
   let duration;
   const timeNow = parseInt(format(new Date(),"HH"));
+  const name = props.name.charAt(0).toUpperCase() + props.name.slice(1);
 
   if((timeNow >= 5 && timeNow < 12)){
     duration = "Morning"
@@ -79,7 +80,7 @@ export const DashboardComponent = (props:{name:string}) => {
     <div className='bg-[#F5F7F8] mx-auto flex flex-col items-center xl:items-start mb-5'>
       <div className='grid grid-cols-1 mt-20 lg:mt-1 lg:grid-cols-2 flex flex-col justify-center items-center md:flex md:flex-row md:justify-between md:items-center md:mx-20'>
         <div className='flex flex-col items-center text-center px-2'>
-            <h1 className='text-sky-700 text-3xl md:text-4xl font-bold font-sans mb-2'>Good {duration} {props.name}.</h1>
+            <h1 className='text-sky-700 text-3xl md:text-4xl font-bold font-sans mb-2'>Good {duration} {name}.</h1>
             <h1 className='text-sky-700/75 text-3xl md:text-4xl font-bold font-sans'>Your money is where you are</h1>
         </div>
         <div className='hidden lg:block w-[50vw] h-[60vh]'>
