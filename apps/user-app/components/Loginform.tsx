@@ -77,7 +77,7 @@ export const LoginForm = (props:loginFormProps)=>{
     }
 
     return (
-        <div className="flex flex-col bg-slate-50 rounded-lg p-5 w-3/5 md:w-1/2">
+        <div className="flex flex-col bg-slate-50 rounded-lg p-5 w-4/6 md:w-1/2">
             <p className="font-bold text-2xl text-sky-700 pb-1">{pageName==="Signin" ? "Sign In" : "Sign Up"}</p>
             <p className="font-thin text-sm text-gray-600 pb-2">{pageName==="Signin" ? (<>Don't have an account? <LoginBtn content={"Sign up"}/></>) :
             (<>Already have an account? <LoginBtn content={"Sign in"}/></>)}</p>
