@@ -45,7 +45,7 @@ export const DashboardComponent = (props:{name:string}) => {
   ];
 
   let duration;
-  const timeNow = new Date().getHours();
+  const timeNow = new Date((new Date()).toLocaleTimeString()).getHours();
   const name = props.name.charAt(0).toUpperCase() + props.name.slice(1);
 
   if((timeNow >= 5 && timeNow < 12)){
