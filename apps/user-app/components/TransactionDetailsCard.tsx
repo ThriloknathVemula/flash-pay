@@ -22,7 +22,7 @@ export default function TransactionDetailsCard(props:transactionDetailsProps){
             {status === "Failure" ? <h1 className="font-bold text-2xl">Your Payment is Failed</h1> : <h1 className="font-bold text-2xl">Your Payment was Successful</h1>}
             <p><span className="font-semibold">Receiver:</span> {receiverName}</p>
             <p><span className="font-semibold">Amount:</span> {amount/100}</p>
-            <p><span className="font-semibold">Transaction Time:</span> {transactionTime}</p>
+            <p><span className="font-semibold">Transaction Time:</span> {transactionTime.toLocaleString()}</p>
         </div>
         <FlashPayBtn text={"Go Back To Transactions Page"} routePage="transactions"/>
     </div>)
