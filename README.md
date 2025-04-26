@@ -15,6 +15,9 @@ Transaction Details: Access complete information for each transaction, including
 
 ## Tech stack
 Frontend and Backend: Next JS, TypeScript
+
 Styling: Tailwind CSS
+
 Database: PostgreSQL, Prisma (ORM)
+
 Monorepo management: TurboRepo
